@@ -74,22 +74,74 @@ fn pick_spread_out(
     min_distance_m: f64,
     max_n: usize,
 ) -> Vec<Location> {
+    if candidates.is_empty() {
+        return Vec::new();
+    }
+
     let mut chosen = Vec::new();
-    for (name, loc, _type) in candidates {
-        if chosen.iter().all(|c: &Location| haversine_distance(c.coords, *loc) >= min_distance_m)
+    let mut remaining: Vec<_> = candidates.to_vec();
+
+    // Start with the first point
+    chosen.push(Location {
+        name: remaining[0].0.clone(),
+        coords: remaining[0].1,
+        _type: remaining[0].2.clone(),
+    });
+    remaining.remove(0);
+
+    while chosen.len() < max_n && !remaining.is_empty() {
+        // Pick the point farthest from all chosen points
+        if let Some((idx, _)) = remaining.iter().enumerate()
+            .map(|(i, (_, loc, _))| {
+                let min_dist = chosen
+                    .iter()
+                    .map(|c| haversine_distance(c.coords, *loc))
+                    .fold(f64::MAX, f64::min);
+                (i, min_dist)
+            })
+            .max_by(|a, b| a.1.partial_cmp(&b.1).unwrap())
         {
-            chosen.push(Location {
-                name: name.clone(),
-                coords: *loc,
-                _type: _type.clone()
-            });
-        }
-        if chosen.len() >= max_n {
+            let (name, loc, _type) = remaining.remove(idx);
+            if chosen.iter().all(|c| haversine_distance(c.coords, loc) >= min_distance_m) {
+                chosen.push(Location {
+                    name,
+                    coords: loc,
+                    _type,
+                });
+            } else {
+                // Stop if we can't find more sufficiently spaced points
+                break;
+            }
+        } else {
             break;
         }
     }
+
     chosen
 }
+
+
+
+fn euclidean_distance(a: (f64, f64), b: (f64, f64)) -> f64 {
+    ((a.0 - b.0).powi(2) + (a.1 - b.1).powi(2)).sqrt()
+}
+
+/// Remove locations that are closer than 0.2 units from each other.
+fn remove_close_points(locations: Vec<Location>, min_distance: f64) -> Vec<Location> {
+    let mut filtered = Vec::new();
+
+    for loc in locations {
+        if filtered
+            .iter()
+            .all(|existing: &Location| euclidean_distance(existing.coords, loc.coords) > min_distance)
+        {
+            filtered.push(loc);
+        }
+    }
+
+    filtered
+}
+
 
 pub async fn fetch_map(
     place: &str,
@@ -196,6 +248,10 @@ pub async fn fetch_map(
         return Err("No locations found".into());
     }
 
+
+
+
+
     // Step 3: Compute centroid & scale for normalization
     let (sum_lat, sum_lng) = locations.iter().fold((0.0, 0.0), |acc, loc| {
         (acc.0 + loc.coords.0, acc.1 + loc.coords.1)
@@ -248,6 +304,9 @@ pub async fn fetch_map(
         });
     }
 
+    // Remove points that are too close to each other
+    let transformed_locations = remove_close_points(transformed_locations, 0.2);
+
     // Step 5: Generate a full mesh of routes
     let mut routes = Vec::new();
     for i in 0..transformed_locations.len() {
@@ -266,6 +325,8 @@ pub async fn fetch_map(
             non_overlapping.push((a, b));
         }
     }
+
+
 
     Ok(Map {
         locations: transformed_locations,

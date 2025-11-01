@@ -1,3 +1,4 @@
+use crate::viz_map;
 use crate::fetch_map;
 use std::fs::File;
 use std::io::BufReader;
@@ -15,7 +16,8 @@ pub async fn init_map(name: String, live: bool) -> String {
             dotenv().ok();
             println!("Fetching up to {} attractions in {}...", 5, name);
             // Destructure the returned tuple
-            let map = fetch_map(&*name, 10, 100.0).await.unwrap();
+            let map = fetch_map(&*name, 10, 200.0).await.unwrap();
+            viz_map(&map.clone());
             println!("{}", map);
 
 

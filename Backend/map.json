@@ -3,91 +3,67 @@
     {
       "name": "Premier Inn Basildon (East Mayne) hotel",
       "coords": [
-        0.10913137521758498,
-        0.007831706386667352
+        0.30842602242980016,
+        0.15874268712884448
       ],
       "_type": "Restaurant"
     },
     {
-      "name": "Papa Johns Pizza",
+      "name": "Deniz Restaurant",
       "coords": [
-        -0.8687064408088029,
-        -0.23526393624459693
+        -0.8704063666418546,
+        -0.17472252076092398
       ],
       "_type": "Restaurant"
-    },
-    {
-      "name": "TLC Electrical Distributors",
-      "coords": [
-        0.19753367124735344,
-        0.1519759684434566
-      ],
-      "_type": "Hotel"
     },
     {
       "name": "Joy Christian Centre",
       "coords": [
-        0.06186396375599575,
-        0.1803563353614125
+        0.2511804035219514,
+        0.3676874729149666
       ],
       "_type": "Church"
     },
     {
-      "name": "What God Can Do Ministries",
+      "name": "St. Chad's Church, Vange",
       "coords": [
-        -0.15184392702924468,
-        -0.1933920101611662
+        -0.04772375280799344,
+        -0.5074019368919316
       ],
       "_type": "Church"
     },
     {
       "name": "TSB Bank",
       "coords": [
-        0.34106041203464643,
-        -0.4178908717028785
+        0.5893155580474445,
+        -0.3568504395560246
       ],
       "_type": "Bank"
     },
     {
-      "name": "Natwest Commercial & Corporate Banking",
+      "name": "Tesco Bank ATM",
       "coords": [
-        0.07210286480589162,
-        0.33825396283622966
+        -0.40205379976263045,
+        0.5231191506463575
       ],
       "_type": "Bank"
-    },
-    {
-      "name": "5 Elements Kickboxing MMA & Boxing",
-      "coords": [
-        -0.09807119933639005,
-        0.1669786050017032
-      ],
-      "_type": "Gym"
-    },
-    {
-      "name": "Chalvedon Amateur Boxing Club",
-      "coords": [
-        0.22779790489539617,
-        -0.006681466307697252
-      ],
-      "_type": "Gym"
     }
   ],
   "routes": [
     [
       {
-        "name": "Papa Johns Pizza",
+        "name": "Deniz Restaurant",
         "coords": [
-          -0.8687064408088029,
-          -0.23526393624459693
+          -0.8704063666418546,
+          -0.17472252076092398
         ],
         "_type": "Restaurant"
       },
       {
         "name": "Premier Inn Basildon (East Mayne) hotel",
         "coords": [
-          0.10913137521758498,
-          0.007831706386667352
+          0.30842602242980016,
+          0.15874268712884448
         ],
         "_type": "Restaurant"
       }
@@ -96,16 +72,16 @@
       {
         "name": "Joy Christian Centre",
         "coords": [
-          0.06186396375599575,
-          0.1803563353614125
+          0.2511804035219514,
+          0.3676874729149666
         ],
         "_type": "Church"
       },
       {
         "name": "Premier Inn Basildon (East Mayne) hotel",
         "coords": [
-          0.10913137521758498,
-          0.007831706386667352
+          0.30842602242980016,
+          0.15874268712884448
         ],
         "_type": "Restaurant"
       }
@@ -114,214 +90,88 @@
       {
         "name": "Premier Inn Basildon (East Mayne) hotel",
         "coords": [
-          0.10913137521758498,
-          0.007831706386667352
+          0.30842602242980016,
+          0.15874268712884448
         ],
         "_type": "Restaurant"
       },
       {
-        "name": "What God Can Do Ministries",
+        "name": "St. Chad's Church, Vange",
         "coords": [
-          -0.15184392702924468,
-          -0.1933920101611662
+          -0.04772375280799344,
+          -0.5074019368919316
         ],
         "_type": "Church"
       }
     ],
     [
       {
-        "name": "Natwest Commercial & Corporate Banking",
+        "name": "Deniz Restaurant",
         "coords": [
-          0.07210286480589162,
-          0.33825396283622966
-        ],
-        "_type": "Bank"
-      },
-      {
-        "name": "Premier Inn Basildon (East Mayne) hotel",
-        "coords": [
-          0.10913137521758498,
-          0.007831706386667352
-        ],
-        "_type": "Restaurant"
-      }
-    ],
-    [
-      {
-        "name": "5 Elements Kickboxing MMA & Boxing",
-        "coords": [
-          -0.09807119933639005,
-          0.1669786050017032
-        ],
-        "_type": "Gym"
-      },
-      {
-        "name": "Premier Inn Basildon (East Mayne) hotel",
-        "coords": [
-          0.10913137521758498,
-          0.007831706386667352
-        ],
-        "_type": "Restaurant"
-      }
-    ],
-    [
-      {
-        "name": "Papa Johns Pizza",
-        "coords": [
-          -0.8687064408088029,
-          -0.23526393624459693
+          -0.8704063666418546,
+          -0.17472252076092398
         ],
         "_type": "Restaurant"
       },
       {
-        "name": "What God Can Do Ministries",
+        "name": "Joy Christian Centre",
         "coords": [
-          -0.15184392702924468,
-          -0.1933920101611662
+          0.2511804035219514,
+          0.3676874729149666
         ],
         "_type": "Church"
       }
     ],
     [
       {
-        "name": "Papa Johns Pizza",
+        "name": "Deniz Restaurant",
         "coords": [
-          -0.8687064408088029,
-          -0.23526393624459693
+          -0.8704063666418546,
+          -0.17472252076092398
         ],
         "_type": "Restaurant"
       },
       {
-        "name": "TSB Bank",
+        "name": "St. Chad's Church, Vange",
         "coords": [
-          0.34106041203464643,
-          -0.4178908717028785
+          -0.04772375280799344,
+          -0.5074019368919316
         ],
-        "_type": "Bank"
+        "_type": "Church"
       }
     ],
     [
       {
-        "name": "TLC Electrical Distributors",
+        "name": "Deniz Restaurant",
         "coords": [
-          0.19753367124735344,
-          0.1519759684434566
+          -0.8704063666418546,
+          -0.17472252076092398
         ],
-        "_type": "Hotel"
+        "_type": "Restaurant"
       },
       {
-        "name": "TSB Bank",
+        "name": "Tesco Bank ATM",
         "coords": [
-          0.34106041203464643,
-          -0.4178908717028785
+          -0.40205379976263045,
+          0.5231191506463575
         ],
         "_type": "Bank"
-      }
-    ],
-    [
-      {
-        "name": "Natwest Commercial & Corporate Banking",
-        "coords": [
-          0.07210286480589162,
-          0.33825396283622966
-        ],
-        "_type": "Bank"
-      },
-      {
-        "name": "TLC Electrical Distributors",
-        "coords": [
-          0.19753367124735344,
-          0.1519759684434566
-        ],
-        "_type": "Hotel"
-      }
-    ],
-    [
-      {
-        "name": "Chalvedon Amateur Boxing Club",
-        "coords": [
-          0.22779790489539617,
-          -0.006681466307697252
-        ],
-        "_type": "Gym"
-      },
-      {
-        "name": "TLC Electrical Distributors",
-        "coords": [
-          0.19753367124735344,
-          0.1519759684434566
-        ],
-        "_type": "Hotel"
       }
     ],
     [
       {
         "name": "Joy Christian Centre",
         "coords": [
-          0.06186396375599575,
-          0.1803563353614125
+          0.2511804035219514,
+          0.3676874729149666
         ],
         "_type": "Church"
-      },
-      {
-        "name": "Natwest Commercial & Corporate Banking",
-        "coords": [
-          0.07210286480589162,
-          0.33825396283622966
-        ],
-        "_type": "Bank"
-      }
-    ],
-    [
-      {
-        "name": "Chalvedon Amateur Boxing Club",
-        "coords": [
-          0.22779790489539617,
-          -0.006681466307697252
-        ],
-        "_type": "Gym"
-      },
-      {
-        "name": "What God Can Do Ministries",
-        "coords": [
-          -0.15184392702924468,
-          -0.1933920101611662
-        ],
-        "_type": "Church"
-      }
-    ],
-    [
-      {
-        "name": "Chalvedon Amateur Boxing Club",
-        "coords": [
-          0.22779790489539617,
-          -0.006681466307697252
-        ],
-        "_type": "Gym"
       },
       {
         "name": "TSB Bank",
         "coords": [
-          0.34106041203464643,
-          -0.4178908717028785
-        ],
-        "_type": "Bank"
-      }
-    ],
-    [
-      {
-        "name": "5 Elements Kickboxing MMA & Boxing",
-        "coords": [
-          -0.09807119933639005,
-          0.1669786050017032
-        ],
-        "_type": "Gym"
-      },
-      {
-        "name": "Natwest Commercial & Corporate Banking",
-        "coords": [
-          0.07210286480589162,
-          0.33825396283622966
+          0.5893155580474445,
+          -0.3568504395560246
         ],
         "_type": "Bank"
       }

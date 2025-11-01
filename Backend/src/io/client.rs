@@ -5,7 +5,7 @@ use tokio::net::TcpStream;
 use serde_json::{json, Value};
 use crate::map::gen_places::fetch_map;
 
-const IS_LIVE: bool = false;
+const IS_LIVE: bool = true;
 
 pub async fn handle_client(mut stream: TcpStream) {
     let mut buffer = [0u8; 512];

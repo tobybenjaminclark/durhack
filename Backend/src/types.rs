@@ -77,7 +77,7 @@ pub enum LocEnum {
     Hotel,
     Church,
     Bank,
-    Gym
+    Gym,
 }
 
 
