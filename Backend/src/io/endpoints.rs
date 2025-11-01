@@ -6,6 +6,7 @@ use rand::prelude::IndexedRandom;
 use serde_json::json;
 use crate::io::io::{read_map_from_file, write_map_to_file};
 use crate::map::gen_characters::gen_characters;
+use crate::map::gen_relations::gen_relations;
 
 pub async fn init_map(name: String, live: bool) -> String {
 
@@ -29,9 +30,12 @@ pub async fn init_map(name: String, live: bool) -> String {
     };
 
     let characters = gen_characters(5, map.clone());
-    for c in characters {
+    for c in characters.clone() {
         println!("{}", c);
     }
+
+    let relations = gen_relations(characters);
+    println!("{:#?}", relations);
 
     // Build JSON
     let json_output = json!({

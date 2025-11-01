@@ -6,6 +6,18 @@ use strum_macros::{AsRefStr, EnumString, Display};
 use crate::types::LocEnum::{Bank, Church, Gym, Hotel, Restaurant, School};
 use crate::types::Role::{Bankteller, Chef, Janitor, Priest, Teacher, Trainer};
 
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+pub(crate) enum Relation {
+    Parent,
+    Child,
+    Sibling,
+    Friend
+}
+
+pub type Relations = HashMap<String, Vec<(String, Relation)>>;
+
+
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Character {
     pub name: String,
