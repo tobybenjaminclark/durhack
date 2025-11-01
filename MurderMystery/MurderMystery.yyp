@@ -45,6 +45,8 @@
     {"id":{"name":"rmGame","path":"rooms/rmGame/rmGame.yy",},},
     {"id":{"name":"macro","path":"scripts/macro/macro.yy",},},
     {"id":{"name":"sendMessage","path":"scripts/sendMessage/sendMessage.yy",},},
+    {"id":{"name":"typeLocation","path":"scripts/typeLocation/typeLocation.yy",},},
+    {"id":{"name":"typeMap","path":"scripts/typeMap/typeMap.yy",},},
     {"id":{"name":"typeMessage","path":"scripts/typeMessage/typeMessage.yy",},},
   ],
   "resourceType":"GMProject",

@@ -1,3 +1,6 @@
+
+
+
 /// @struct MESSAGE
 function MESSAGE(_content, _is_player)
 {
@@ -6,3 +9,5 @@ function MESSAGE(_content, _is_player)
         is_player: _is_player,
     };
 }
+
+

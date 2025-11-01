@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"typeMap",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"typeMap",
+  "parent":{
+    "name":"types",
+    "path":"folders/Scripts/types.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
