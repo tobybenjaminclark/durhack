@@ -5,9 +5,10 @@
 /// @param locations array of Location structs
 /// @param routes    array of [Location, Location] pairs
 /// @returns struct representing a Map
-function Map(locations, routes) constructor {
+function Map(locations, routes, name) constructor {
     self.locations = locations;
     self.routes    = routes;
+	self.name	   = name;
 }
 
 
@@ -41,5 +42,5 @@ function init_fake_map() {
 	];
 
 	// --- create global map object ---
-	return new Map(all_locations, all_routes);
+	return new Map(all_locations, all_routes, "Test Map");
 }

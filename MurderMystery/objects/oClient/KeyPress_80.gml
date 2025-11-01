@@ -1,1 +1,1 @@
-init_map("Notts");
+init_map("Nottingham");
