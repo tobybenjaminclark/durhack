@@ -1,3 +1,6 @@
+/* Initialize a fake map */
+global.map = init_fake_map()
+
 /* Current Chat Info */
 global.current_messages = [
     MESSAGE("Greetings, traveller!", false),

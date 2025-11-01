@@ -8,9 +8,9 @@
 /// @param _type    string
 /// @returns struct representing a Location
 function Location(name, coords_x, coords_y, _type) constructor {
-    name    = name;
-    coords  = [coords_x, coords_y];
-    _type   = _type;
+    self.name    = name;
+    self.coords  = [coords_x, coords_y];
+    self._type   = _type;
 }
 
 
