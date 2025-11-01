@@ -16,3 +16,6 @@ global.characters = ["Merlin", "Morgana", "Merlin", "Lancelot", "Guinevere"];
 
 /* Server Connection */
 global.is_connected = false;
+
+/* Currently selected location (NULL at start) */
+global.current_location = "";
