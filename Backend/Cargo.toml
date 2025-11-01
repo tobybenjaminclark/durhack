@@ -8,3 +8,4 @@ tokio = { version = "1", features = ["full"] }
 serde = { version = "1", features = ["derive"] }
 async-openai = "0.23"
 anyhow = "1.0.100"
+dotenvy = "0.15"

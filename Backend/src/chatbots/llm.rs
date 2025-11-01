@@ -62,7 +62,6 @@ impl CharacterSession {
         let request = CreateChatCompletionRequestArgs::default()
             .model(model)
             .messages(messages)
-            .max_tokens(200 as u32)
             .build()?;
 
         let response = client.chat().create(request).await?;

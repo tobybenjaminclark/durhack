@@ -7,8 +7,10 @@ use chatbots::types::ChatManager;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    std::env::var("OPENAI_API_KEY")
-        .expect("Please set the OPENAI_API_KEY environment variable.");
+    dotenvy::dotenv().ok();
+
+    let api_key = std::env::var("OPENAI_API_KEY")
+        .expect("Please set OPENAI_API_KEY in a .env file or environment.");
 
     let mut manager = ChatManager::new("gpt-5-nano");
 
