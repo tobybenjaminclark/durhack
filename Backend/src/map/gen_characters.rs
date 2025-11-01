@@ -1,9 +1,8 @@
 use std::cmp::PartialEq;
-use rand::prelude::IndexedRandom;
+use rand::prelude::{IndexedRandom, SliceRandom};
+use rand::Rng;
 use crate::types::{Character, Map, Location, Role, LocEnum, role_to_loc, loc_to_role};
 use fake::{Fake, faker::name::en::Name};
-use rand::{seq::SliceRandom, Rng};
-
 
 pub fn gen_characters(n: i32, map: Map) -> Vec<Character> {
     let mut rng = rand::thread_rng();
@@ -31,11 +30,7 @@ pub fn gen_characters(n: i32, map: Map) -> Vec<Character> {
             let location = map
                 .locations
                 .choose_weighted(&mut rng, |loc| {
-                    if loc._type == preferred_loc_type {
-                        3.0
-                    } else {
-                        1.0
-                    }
+                    if loc._type == preferred_loc_type { 3.0 } else { 1.0 }
                 })
                 .unwrap()
                 .clone();
@@ -47,12 +42,24 @@ pub fn gen_characters(n: i32, map: Map) -> Vec<Character> {
             role,
             locations: selected_locations,
             is_murderer: false,
+            is_murdered: false, // initialize as not murdered
         });
     }
 
     if !characters.is_empty() {
+        // Assign the murderer
         let murderer_index = rng.gen_range(0..characters.len());
         characters[murderer_index].is_murderer = true;
+
+        // Pick a murdered character that is not the murderer
+        let possible_victims: Vec<usize> = (0..characters.len())
+            .filter(|&i| i != murderer_index)
+            .collect();
+
+        if !possible_victims.is_empty() {
+            let murdered_index = *possible_victims.choose(&mut rng).unwrap();
+            characters[murdered_index].is_murdered = true;
+        }
     }
 
     characters

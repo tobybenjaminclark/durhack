@@ -3,8 +3,8 @@ use std::fmt;
 use std::hash::{Hash, Hasher};
 use serde::{Deserialize, Serialize};
 use strum_macros::{AsRefStr, EnumString, Display};
-use crate::types::LocEnum::{Bank, Church, Gym, Hotel, Restaurant, School};
-use crate::types::Role::{Bankteller, Chef, Janitor, Priest, Teacher, Trainer};
+use crate::types::LocEnum::{Bank, Church, Gym, Hotel, Restaurant};
+use crate::types::Role::{Bankteller, Chef, Janitor, Priest, Trainer};
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub(crate) enum Relation {
@@ -23,13 +23,16 @@ pub struct Character {
     pub name: String,
     pub role: Role,
     pub locations: Vec<Location>,
-    pub is_murderer: bool
+    pub is_murderer: bool,
+    pub is_murdered: bool
 }
+
 impl fmt::Display for Character {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "Character: {}", self.name)?;
         writeln!(f, "  Role: {:?}", self.role)?;
         writeln!(f, "  Murderer: {}", self.is_murderer)?;
+        writeln!(f, "  Murdered: {}", self.is_murdered)?;
         writeln!(f, "  Locations:")?;
         for l in &self.locations {
             writeln!(f, "    - {} ({:?})", l.name, l._type)?;
@@ -43,7 +46,6 @@ pub fn role_to_loc(role: Role) -> LocEnum {
     match role {
         Role::Chef => Restaurant,
         Role::Janitor => Hotel,
-        Role::Teacher => School,
         Role::Priest => Church,
         Role::Bankteller => Bank,
         Role::Trainer => Gym
@@ -54,7 +56,6 @@ pub fn loc_to_role(loc: LocEnum) -> Role {
     match loc {
         Restaurant => Chef,
         Hotel => Janitor,
-        School => Teacher,
         Church => Priest,
         Bank => Bankteller,
         Gym => Trainer
@@ -65,7 +66,6 @@ pub fn loc_to_role(loc: LocEnum) -> Role {
 pub enum Role {
     Chef,
     Janitor,
-    Teacher,
     Priest,
     Bankteller,
     Trainer
@@ -75,7 +75,6 @@ pub enum Role {
 pub enum LocEnum {
     Restaurant,
     Hotel,
-    School,
     Church,
     Bank,
     Gym

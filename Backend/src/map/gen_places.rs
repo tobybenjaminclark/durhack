@@ -121,7 +121,6 @@ pub async fn fetch_map(
     let types = [
         LocEnum::Restaurant,
         LocEnum::Hotel,
-        LocEnum::School,
         LocEnum::Church,
         LocEnum::Bank,
         LocEnum::Gym,
