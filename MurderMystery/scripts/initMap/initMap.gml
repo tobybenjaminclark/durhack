@@ -70,7 +70,4 @@ function reciever_init_map(mapdata) {
     // --- final map struct ---
     global.map = new Map(locations, routes, name);
 	
-	with(oMapRenderer) {
-		spawn_nodes_from_map();
-	} 
 }
