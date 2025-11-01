@@ -1,3 +1,4 @@
+use std::collections::HashSet;
 use dotenvy::dotenv;
 use crate::types::{Map, Location, LocEnum};
 use serde::Deserialize;
@@ -221,14 +222,32 @@ pub async fn fetch_map(
         (x, -y) // mirror vertically
     };
 
-    let transformed_locations: Vec<Location> = locations
-        .into_iter()
-        .map(|loc| Location {
+    let mut seen_names = HashSet::new();
+    let mut seen_coords: HashSet<(i64, i64)> = HashSet::new();
+    let mut transformed_locations: Vec<Location> = Vec::new();
+
+    for loc in locations {
+        let coords = transform_point(loc.coords);
+
+        // Convert coordinates to integers for hashing
+        let key = (
+            (coords.0 * 1_000_000.0).round() as i64,
+            (coords.1 * 1_000_000.0).round() as i64,
+        );
+
+        if seen_names.contains(&loc.name) || seen_coords.contains(&key) {
+            continue;
+        }
+
+        seen_names.insert(loc.name.clone());
+        seen_coords.insert(key);
+
+        transformed_locations.push(Location {
             name: loc.name,
-            coords: transform_point(loc.coords),
-            _type: loc._type
-        })
-        .collect();
+            coords,
+            _type: loc._type,
+        });
+    }
 
     // Step 5: Generate a full mesh of routes
     let mut routes = Vec::new();

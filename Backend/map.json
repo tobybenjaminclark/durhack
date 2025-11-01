@@ -1,50 +1,42 @@
 {
   "locations": [
     {
-      "name": "Holiday Inn Nottingham by IHG",
+      "name": "Premier Inn Basildon (East Mayne) hotel",
       "coords": [
-        -0.3608092179726602,
-        -0.413289046180644
+        -0.0967024818575151,
+        0.028136538967291434
       ],
       "_type": "Restaurant"
     },
     {
-      "name": "Holiday Inn Nottingham by IHG",
+      "name": "Felmore Primary School",
       "coords": [
-        -0.3608092179726602,
-        -0.413289046180644
-      ],
-      "_type": "Hotel"
-    },
-    {
-      "name": "Saint Augustine's Roman Catholic Primary and Nursery School",
-      "coords": [
-        0.5556279095169067,
-        0.7080096229331013
+        0.5285259465329936,
+        0.04713417247454166
       ],
       "_type": "School"
     },
     {
-      "name": "United Holy Church of God",
+      "name": "Joy Christian Centre",
       "coords": [
-        -0.4051030814421075,
-        0.12495408730957906
+        -0.19109395435426876,
+        0.3726625721755156
       ],
       "_type": "Church"
     },
     {
-      "name": "Coventry Building Society Nottingham",
+      "name": "TSB Bank",
       "coords": [
-        0.40250877273562763,
-        0.00754142602475188
+        0.36645220808581636,
+        -0.8220175054030356
       ],
       "_type": "Bank"
     },
     {
-      "name": "Park Plaza Nottingham",
+      "name": "5 Elements Kickboxing MMA & Boxing",
       "coords": [
-        0.16858483513491507,
-        -0.01392704390545555
+        -0.5104792365495204,
+        0.3459476828200106
       ],
       "_type": "Gym"
     }
@@ -52,200 +44,110 @@
   "routes": [
     [
       {
-        "name": "Holiday Inn Nottingham by IHG",
+        "name": "Felmore Primary School",
         "coords": [
-          -0.3608092179726602,
-          -0.413289046180644
-        ],
-        "_type": "Hotel"
-      },
-      {
-        "name": "Holiday Inn Nottingham by IHG",
-        "coords": [
-          -0.3608092179726602,
-          -0.413289046180644
-        ],
-        "_type": "Restaurant"
-      }
-    ],
-    [
-      {
-        "name": "Holiday Inn Nottingham by IHG",
-        "coords": [
-          -0.3608092179726602,
-          -0.413289046180644
-        ],
-        "_type": "Restaurant"
-      },
-      {
-        "name": "Saint Augustine's Roman Catholic Primary and Nursery School",
-        "coords": [
-          0.5556279095169067,
-          0.7080096229331013
+          0.5285259465329936,
+          0.04713417247454166
         ],
         "_type": "School"
+      },
+      {
+        "name": "Premier Inn Basildon (East Mayne) hotel",
+        "coords": [
+          -0.0967024818575151,
+          0.028136538967291434
+        ],
+        "_type": "Restaurant"
       }
     ],
     [
       {
-        "name": "Holiday Inn Nottingham by IHG",
+        "name": "Joy Christian Centre",
         "coords": [
-          -0.3608092179726602,
-          -0.413289046180644
+          -0.19109395435426876,
+          0.3726625721755156
         ],
-        "_type": "Restaurant"
+        "_type": "Church"
       },
       {
-        "name": "United Holy Church of God",
+        "name": "Premier Inn Basildon (East Mayne) hotel",
         "coords": [
-          -0.4051030814421075,
-          0.12495408730957906
+          -0.0967024818575151,
+          0.028136538967291434
+        ],
+        "_type": "Restaurant"
+      }
+    ],
+    [
+      {
+        "name": "5 Elements Kickboxing MMA & Boxing",
+        "coords": [
+          -0.5104792365495204,
+          0.3459476828200106
+        ],
+        "_type": "Gym"
+      },
+      {
+        "name": "Premier Inn Basildon (East Mayne) hotel",
+        "coords": [
+          -0.0967024818575151,
+          0.028136538967291434
+        ],
+        "_type": "Restaurant"
+      }
+    ],
+    [
+      {
+        "name": "Felmore Primary School",
+        "coords": [
+          0.5285259465329936,
+          0.04713417247454166
+        ],
+        "_type": "School"
+      },
+      {
+        "name": "TSB Bank",
+        "coords": [
+          0.36645220808581636,
+          -0.8220175054030356
+        ],
+        "_type": "Bank"
+      }
+    ],
+    [
+      {
+        "name": "5 Elements Kickboxing MMA & Boxing",
+        "coords": [
+          -0.5104792365495204,
+          0.3459476828200106
+        ],
+        "_type": "Gym"
+      },
+      {
+        "name": "Joy Christian Centre",
+        "coords": [
+          -0.19109395435426876,
+          0.3726625721755156
         ],
         "_type": "Church"
       }
     ],
     [
       {
-        "name": "Coventry Building Society Nottingham",
+        "name": "5 Elements Kickboxing MMA & Boxing",
         "coords": [
-          0.40250877273562763,
-          0.00754142602475188
-        ],
-        "_type": "Bank"
-      },
-      {
-        "name": "Holiday Inn Nottingham by IHG",
-        "coords": [
-          -0.3608092179726602,
-          -0.413289046180644
-        ],
-        "_type": "Restaurant"
-      }
-    ],
-    [
-      {
-        "name": "Holiday Inn Nottingham by IHG",
-        "coords": [
-          -0.3608092179726602,
-          -0.413289046180644
-        ],
-        "_type": "Restaurant"
-      },
-      {
-        "name": "Park Plaza Nottingham",
-        "coords": [
-          0.16858483513491507,
-          -0.01392704390545555
+          -0.5104792365495204,
+          0.3459476828200106
         ],
         "_type": "Gym"
-      }
-    ],
-    [
-      {
-        "name": "Holiday Inn Nottingham by IHG",
-        "coords": [
-          -0.3608092179726602,
-          -0.413289046180644
-        ],
-        "_type": "Hotel"
       },
       {
-        "name": "Saint Augustine's Roman Catholic Primary and Nursery School",
+        "name": "TSB Bank",
         "coords": [
-          0.5556279095169067,
-          0.7080096229331013
-        ],
-        "_type": "School"
-      }
-    ],
-    [
-      {
-        "name": "Holiday Inn Nottingham by IHG",
-        "coords": [
-          -0.3608092179726602,
-          -0.413289046180644
-        ],
-        "_type": "Hotel"
-      },
-      {
-        "name": "United Holy Church of God",
-        "coords": [
-          -0.4051030814421075,
-          0.12495408730957906
-        ],
-        "_type": "Church"
-      }
-    ],
-    [
-      {
-        "name": "Coventry Building Society Nottingham",
-        "coords": [
-          0.40250877273562763,
-          0.00754142602475188
+          0.36645220808581636,
+          -0.8220175054030356
         ],
         "_type": "Bank"
-      },
-      {
-        "name": "Holiday Inn Nottingham by IHG",
-        "coords": [
-          -0.3608092179726602,
-          -0.413289046180644
-        ],
-        "_type": "Hotel"
-      }
-    ],
-    [
-      {
-        "name": "Holiday Inn Nottingham by IHG",
-        "coords": [
-          -0.3608092179726602,
-          -0.413289046180644
-        ],
-        "_type": "Hotel"
-      },
-      {
-        "name": "Park Plaza Nottingham",
-        "coords": [
-          0.16858483513491507,
-          -0.01392704390545555
-        ],
-        "_type": "Gym"
-      }
-    ],
-    [
-      {
-        "name": "Coventry Building Society Nottingham",
-        "coords": [
-          0.40250877273562763,
-          0.00754142602475188
-        ],
-        "_type": "Bank"
-      },
-      {
-        "name": "Saint Augustine's Roman Catholic Primary and Nursery School",
-        "coords": [
-          0.5556279095169067,
-          0.7080096229331013
-        ],
-        "_type": "School"
-      }
-    ],
-    [
-      {
-        "name": "Coventry Building Society Nottingham",
-        "coords": [
-          0.40250877273562763,
-          0.00754142602475188
-        ],
-        "_type": "Bank"
-      },
-      {
-        "name": "Park Plaza Nottingham",
-        "coords": [
-          0.16858483513491507,
-          -0.01392704390545555
-        ],
-        "_type": "Gym"
       }
     ]
   ]
