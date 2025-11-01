@@ -5,6 +5,7 @@ use dotenvy::dotenv;
 use rand::prelude::IndexedRandom;
 use serde_json::json;
 use crate::io::io::{read_map_from_file, write_map_to_file};
+use crate::map::gen_characters::gen_characters;
 
 pub async fn init_map(name: String, live: bool) -> String {
 
@@ -16,6 +17,8 @@ pub async fn init_map(name: String, live: bool) -> String {
             let map = fetch_map(&*name, 10, 100.0).await.unwrap();
             println!("{}", map);
 
+
+
             let _ = write_map_to_file(&map, "map.json");
 
             map
@@ -24,6 +27,11 @@ pub async fn init_map(name: String, live: bool) -> String {
             read_map_from_file("map.json").unwrap()
         }
     };
+
+    let characters = gen_characters(5, map.clone());
+    for c in characters {
+        println!("{}", c);
+    }
 
     // Build JSON
     let json_output = json!({
