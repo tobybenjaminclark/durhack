@@ -37,8 +37,11 @@
   },
   "name":"MurderMystery",
   "resources":[
+    {"id":{"name":"oBackButton","path":"objects/oBackButton/oBackButton.yy",},},
+    {"id":{"name":"oCharacterRenderer","path":"objects/oCharacterRenderer/oCharacterRenderer.yy",},},
     {"id":{"name":"oChatManager","path":"objects/oChatManager/oChatManager.yy",},},
     {"id":{"name":"rmChatroom","path":"rooms/rmChatroom/rmChatroom.yy",},},
+    {"id":{"name":"rmGame","path":"rooms/rmGame/rmGame.yy",},},
     {"id":{"name":"macro","path":"scripts/macro/macro.yy",},},
     {"id":{"name":"sendMessage","path":"scripts/sendMessage/sendMessage.yy",},},
     {"id":{"name":"typeMessage","path":"scripts/typeMessage/typeMessage.yy",},},
@@ -47,6 +50,7 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rmChatroom","path":"rooms/rmChatroom/rmChatroom.yy",},},
+    {"roomId":{"name":"rmGame","path":"rooms/rmGame/rmGame.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

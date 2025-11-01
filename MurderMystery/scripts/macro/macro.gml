@@ -1,4 +1,4 @@
-/// Create Event of obj_controller or obj_chat_window
+/* Current Chat Info */
 global.current_messages = [
     MESSAGE("Greetings, traveller!", false),
     MESSAGE("Hey Merlin, can you teach me a spell?", true),
@@ -7,3 +7,6 @@ global.current_messages = [
     MESSAGE("Not quite, but you're learning quickly.", false)
 ];
 global.current_chat_character = "Merlin";
+
+/* Characters */
+global.characters = ["Merlin", "Morgana", "Merlin", "Lancelot", "Guinevere"];
