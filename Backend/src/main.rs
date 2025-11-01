@@ -1,12 +1,29 @@
-use tokio::io;
-use tokio::io::AsyncBufReadExt;
+mod map;
+mod io;
+mod types;
 
+use tokio::io::stdin;
+use crate::map::viz_places::viz_map;
+use std::error::Error;
+use tokio::io::{AsyncReadExt, AsyncWriteExt};
+use crate::io::client::handle_client;
+use crate::map::gen_places::fetch_map;
 mod chatbots;
-use chatbots::llm::*;
 use chatbots::types::ChatManager;
+use tokio::io::AsyncBufReadExt;
+use tokio::io::BufReader;
+
+
 
 #[tokio::main]
-async fn main() -> anyhow::Result<()> {
+async fn main() -> Result<(), Box<dyn Error>> {
+    init_connection().await;
+    fetch_map("Nottingham", 5, 100.0);
+    Ok(())
+}
+
+
+async fn chat() -> anyhow::Result<()> {
     dotenvy::dotenv().ok();
 
     let api_key = std::env::var("OPENAI_API_KEY")
@@ -22,7 +39,7 @@ async fn main() -> anyhow::Result<()> {
 
     println!("Type messages. Use /switch <name> to change character. /exit to quit.\n");
 
-    let stdin = io::BufReader::new(io::stdin());
+    let stdin = BufReader::new(stdin());
     let mut lines = stdin.lines();
 
     while let Some(line) = lines.next_line().await? {
@@ -42,4 +59,27 @@ async fn main() -> anyhow::Result<()> {
     }
 
     Ok(())
+}
+
+
+pub async fn init_connection() {
+    let port = "9999";
+    let listener = tokio::net::TcpListener::bind(format!("127.0.0.1:{}", port))
+        .await
+        .expect("Failed to bind to port");
+
+    println!("Server listening on localhost:{}", port);
+
+    let map = fetch_map("Nottingham", 5, 100.0).await.unwrap();
+    viz_map(&map);
+
+    loop {
+        match listener.accept().await {
+            Ok((stream, addr)) => {
+                println!("New connection from {}", addr);
+                tokio::spawn(handle_client(stream));
+            }
+            Err(e) => eprintln!("Failed to accept connection: {}", e),
+        }
+    }
 }
