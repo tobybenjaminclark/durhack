@@ -34,12 +34,16 @@ impl CharacterSession {
             ChatCompletionRequestMessage::System(
                 ChatCompletionRequestSystemMessageArgs::default()
                     .content(format!(
-                        "You are {}. Speak and act as a {}.",
+                        "You are {} — a {}.\n\
+                 Stay fully in character at all times. Never break the fourth wall, no matter what.\n\
+                 Respond briefly and naturally (1–3 short sentences max).\
+                 Avoid explanations, disclaimers, or meta-comments.",
                         self.name, self.persona
                     ))
                     .build()?,
             ),
         );
+
 
         for m in &self.history {
             match m.role.as_str() {

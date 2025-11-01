@@ -35,12 +35,13 @@
   },
   "name":"MurderMystery",
   "resources":[
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"oChatManager","path":"objects/oChatManager/oChatManager.yy",},},
+    {"id":{"name":"rm_chat","path":"rooms/rm_chat/rm_chat.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"rm_chat","path":"rooms/rm_chat/rm_chat.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[
