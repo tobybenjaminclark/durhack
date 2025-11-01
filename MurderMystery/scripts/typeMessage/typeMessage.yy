@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"typeMessage",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"typeMessage",
+  "parent":{
+    "name":"types",
+    "path":"folders/Scripts/types.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"sendMessage",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sendMessage",
+  "parent":{
+    "name":"messaging",
+    "path":"folders/Scripts/messaging.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
