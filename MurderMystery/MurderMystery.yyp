@@ -42,6 +42,7 @@
     {"id":{"name":"oCharacterRenderer","path":"objects/oCharacterRenderer/oCharacterRenderer.yy",},},
     {"id":{"name":"oChatManager","path":"objects/oChatManager/oChatManager.yy",},},
     {"id":{"name":"oClient","path":"objects/oClient/oClient.yy",},},
+    {"id":{"name":"oLocationDisplay","path":"objects/oLocationDisplay/oLocationDisplay.yy",},},
     {"id":{"name":"oMapRenderer","path":"objects/oMapRenderer/oMapRenderer.yy",},},
     {"id":{"name":"rmChatroom","path":"rooms/rmChatroom/rmChatroom.yy",},},
     {"id":{"name":"rmGame","path":"rooms/rmGame/rmGame.yy",},},

@@ -15,8 +15,16 @@ if (map_h > gui_h - (pad * 2)) {
 x0 = pad; 
 y0 = (gui_h * 0.5) - (map_h * 0.5);
 
-node_r    = 6;
-col_bg    = make_color_rgb(25, 25, 25);
-col_route = make_color_rgb(120, 120, 120);
-col_node  = c_white;
-col_label = c_white;
+// --- colours and sizes ---
+node_size  = 32;
+node_half  = node_size * 0.5;
+
+col_bg     = make_color_rgb(25, 25, 25);
+col_route  = make_color_rgb(100, 100, 100);
+col_node   = make_color_rgb(200, 200, 200);
+col_hover  = make_color_rgb(255, 255, 180);
+col_label  = c_white;
+col_outline = c_white;
+
+hover_index  = -1;
+global.current_location = "";
