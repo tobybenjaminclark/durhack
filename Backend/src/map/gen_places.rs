@@ -39,61 +39,21 @@ struct PlaceResult {
     geometry: Geometry,
 }
 
-#[derive(Debug, Deserialize)]
-struct DirectionsResponse {
-    routes: Vec<DirectionsRoute>,
-}
-
-#[derive(Debug, Deserialize)]
-struct DirectionsRoute {
-    overview_polyline: Polyline,
-}
-
-#[derive(Debug, Deserialize)]
-struct Polyline {
-    points: String,
-}
-
-// Decode Google’s encoded polyline format → Vec<(lat, lng)>
-fn decode_polyline(encoded: &str) -> Vec<(f64, f64)> {
-    let mut points = Vec::new();
-    let mut index = 0;
-    let mut lat = 0i64;
-    let mut lng = 0i64;
-
-    while index < encoded.len() {
-        let mut b;
-        let mut shift = 0;
-        let mut result = 0;
-        loop {
-            b = encoded.as_bytes()[index] as i64 - 63;
-            index += 1;
-            result |= (b & 0x1F) << shift;
-            shift += 5;
-            if b < 0x20 {
-                break;
-            }
-        }
-        let dlat = if (result & 1) != 0 { !(result >> 1) } else { result >> 1 };
-        lat += dlat;
-
-        shift = 0;
-        result = 0;
-        loop {
-            b = encoded.as_bytes()[index] as i64 - 63;
-            index += 1;
-            result |= (b & 0x1F) << shift;
-            shift += 5;
-            if b < 0x20 {
-                break;
-            }
-        }
-        let dlng = if (result & 1) != 0 { !(result >> 1) } else { result >> 1 };
-        lng += dlng;
-
-        points.push((lat as f64 / 1e5, lng as f64 / 1e5));
+// Function to check if two line segments intersect
+fn lines_intersect(a: (f64, f64), b: (f64, f64), c: (f64, f64), d: (f64, f64)) -> bool {
+    fn ccw(p1: (f64, f64), p2: (f64, f64), p3: (f64, f64)) -> bool {
+        (p3.1 - p1.1) * (p2.0 - p1.0) > (p2.1 - p1.1) * (p3.0 - p1.0)
     }
-    points
+    (ccw(a, c, d) != ccw(b, c, d)) && (ccw(a, b, c) != ccw(a, b, d))
+}
+
+// Normalize route ordering to avoid duplicates
+fn normalize_route(a: &Location, b: &Location) -> (Location, Location) {
+    if a.name < b.name {
+        (a.clone(), b.clone())
+    } else {
+        (b.clone(), a.clone())
+    }
 }
 
 fn haversine_distance(a: (f64, f64), b: (f64, f64)) -> f64 {
@@ -109,17 +69,18 @@ fn haversine_distance(a: (f64, f64), b: (f64, f64)) -> f64 {
 
 /// Select points that are at least `min_distance_m` apart
 fn pick_spread_out(
-    candidates: &[(String, (f64, f64))],
+    candidates: &[(String, (f64, f64), LocEnum)],
     min_distance_m: f64,
     max_n: usize,
 ) -> Vec<Location> {
     let mut chosen = Vec::new();
-    for (name, loc) in candidates {
-        if chosen.iter().all(|c: &Location| haversine_distance(c.location, *loc) >= min_distance_m)
+    for (name, loc, _type) in candidates {
+        if chosen.iter().all(|c: &Location| haversine_distance(c.coords, *loc) >= min_distance_m)
         {
             chosen.push(Location {
                 name: name.clone(),
-                location: *loc,
+                coords: *loc,
+                _type: _type.clone()
             });
         }
         if chosen.len() >= max_n {
@@ -209,12 +170,20 @@ pub async fn fetch_map(
         }
 
         // Apply spacing filter
-        let candidates: Vec<(String, (f64, f64))> = all_results
+        let candidates: Vec<(String, (f64, f64), LocEnum)> = all_results
             .into_iter()
+            .filter(|p| {
+                p.name.to_lowercase() != place.to_lowercase()
+                    && haversine_distance(
+                    (p.geometry.location.lat, p.geometry.location.lng),
+                    center
+                ) > 10.0
+            })
             .map(|p| {
                 (
-                    format!("{} ({})", p.name, loc_type),
+                    p.name,
                     (p.geometry.location.lat, p.geometry.location.lng),
+                    loc_type.clone(),
                 )
             })
             .collect();
@@ -229,39 +198,22 @@ pub async fn fetch_map(
 
     // Step 3: Compute centroid & scale for normalization
     let (sum_lat, sum_lng) = locations.iter().fold((0.0, 0.0), |acc, loc| {
-        (acc.0 + loc.location.0, acc.1 + loc.location.1)
+        (acc.0 + loc.coords.0, acc.1 + loc.coords.1)
     });
     let centroid = (sum_lat / locations.len() as f64, sum_lng / locations.len() as f64);
 
     let max_dist = locations
         .iter()
         .map(|loc| {
-            let dx = loc.location.0 - centroid.0;
-            let dy = loc.location.1 - centroid.1;
+            let dx = loc.coords.0 - centroid.0;
+            let dy = loc.coords.1 - centroid.1;
             (dx * dx + dy * dy).sqrt()
         })
         .fold(0.0, f64::max)
         .max(1e-9);
     let scale = 0.9 / max_dist;
 
-    // Step 4: Fetch routes between sequential locations
-    let mut routes: Vec<Vec<(f64, f64)>> = Vec::new();
-    for i in 0..locations.len().saturating_sub(1) {
-        let origin = locations[i].location;
-        let dest = locations[i + 1].location;
-        let directions_url = format!(
-            "https://maps.googleapis.com/maps/api/directions/json?origin={},{}&destination={},{}&mode=driving&key={}",
-            origin.0, origin.1, dest.0, dest.1, api_key
-        );
-
-        let dir_res: DirectionsResponse = client.get(&directions_url).send().await?.json().await?;
-        if let Some(route) = dir_res.routes.get(0) {
-            let decoded = decode_polyline(&route.overview_polyline.points);
-            routes.push(decoded);
-        }
-    }
-
-    // Step 5: Transform coordinates for map visualization
+    // Step 4: Transform coordinates for map visualization
     let transform_point = |(lat, lng): (f64, f64)| {
         let x = (lat - centroid.0) * scale;
         let y = (lng - centroid.1) * scale;
@@ -273,37 +225,33 @@ pub async fn fetch_map(
         .into_iter()
         .map(|loc| Location {
             name: loc.name,
-            location: transform_point(loc.location),
+            coords: transform_point(loc.coords),
+            _type: loc._type
         })
         .collect();
 
-    let transformed_routes: Vec<Vec<(f64, f64)>> = routes
-        .into_iter()
-        .map(|route| {
-            let transformed: Vec<(f64, f64)> =
-                route.into_iter().map(transform_point).collect();
-            interpolate_points(&transformed, 4)
-        })
-        .collect();
+    // Step 5: Generate a full mesh of routes
+    let mut routes = Vec::new();
+    for i in 0..transformed_locations.len() {
+        for j in (i + 1)..transformed_locations.len() {
+            routes.push(normalize_route(
+                &transformed_locations[i],
+                &transformed_locations[j],
+            ));
+        }
+    }
+
+    // Step 6: Remove overlapping routes
+    let mut non_overlapping: Vec<(_, _)> = Vec::<(Location, Location)>::new();
+    for (a, b) in routes {
+        if !non_overlapping.iter().any(|(c, d): &(_, _)| lines_intersect(a.coords, b.coords, c.coords, d.coords)) {
+            non_overlapping.push((a, b));
+        }
+    }
 
     Ok(Map {
         locations: transformed_locations,
-        routes: transformed_routes,
+        routes: non_overlapping,
     })
-}
 
-// Downsample polyline
-fn interpolate_points(points: &[(f64, f64)], n: usize) -> Vec<(f64, f64)> {
-    if points.is_empty() {
-        return Vec::new();
-    }
-    let mut result = Vec::new();
-    result.push(points[0]);
-    for i in (1..points.len() - 1).step_by(n) {
-        result.push(points[i]);
-    }
-    if points.len() > 1 {
-        result.push(points[points.len() - 1]);
-    }
-    result
 }

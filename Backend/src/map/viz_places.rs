@@ -1,8 +1,6 @@
-
 use plotters::prelude::*;
 use std::error::Error;
-use std::f64::consts::PI;
-use crate::types::{Map};
+use crate::types::Map;
 
 pub fn viz_map(map: &Map) -> Result<(), Box<dyn Error>> {
     // Create drawing area
@@ -16,25 +14,15 @@ pub fn viz_map(map: &Map) -> Result<(), Box<dyn Error>> {
 
     chart.configure_mesh().disable_mesh().draw()?;
 
-    // Draw unit circle boundary
-    let circle_points: Vec<(f64, f64)> = (0..360)
-        .map(|d| {
-            let rad = (d as f64) * PI / 180.0;
-            (rad.cos(), rad.sin())
-        })
-        .collect();
-    chart.draw_series(LineSeries::new(circle_points, &BLACK))?;
-
-    // --- Plot routes ---
-    for route in &map.routes {
-        chart.draw_series(LineSeries::new(route.clone(), &BLUE.mix(0.6)))?;
+    // --- Draw routes as lines ---
+    for (a, b) in &map.routes {
+        chart.draw_series(LineSeries::new(vec![a.coords, b.coords], &BLUE))?;
     }
 
-
-    // --- Plot locations colored by faction ---
+    // --- Plot locations ---
     for place in &map.locations {
         chart.draw_series(PointSeries::of_element(
-            vec![place.location],
+            vec![place.coords],
             8,
             &GREEN,
             &|c, s, st| {

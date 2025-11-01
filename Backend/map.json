@@ -1,0 +1,180 @@
+{
+  "locations": [
+    {
+      "name": "Bull City Burger and Brewery",
+      "coords": [
+        0.4459041800006447,
+        -0.2671285045523943
+      ],
+      "_type": "Restaurant"
+    },
+    {
+      "name": "Durham Marriott City Center",
+      "coords": [
+        0.043069196022688896,
+        -0.05342845176418896
+      ],
+      "_type": "Hotel"
+    },
+    {
+      "name": "Durham School of the Arts",
+      "coords": [
+        -0.5162618425739227,
+        0.7353237672740697
+      ],
+      "_type": "School"
+    },
+    {
+      "name": "Trinity United Methodist Church",
+      "coords": [
+        0.5946015649961705,
+        -0.22369252806336637
+      ],
+      "_type": "Church"
+    },
+    {
+      "name": "State Employees’ Credit Union",
+      "coords": [
+        -0.8317709827487928,
+        -0.3437397740400543
+      ],
+      "_type": "Bank"
+    },
+    {
+      "name": "Downtown Durham YMCA",
+      "coords": [
+        0.264457884295393,
+        0.15266549114397956
+      ],
+      "_type": "Gym"
+    }
+  ],
+  "routes": [
+    [
+      {
+        "name": "Bull City Burger and Brewery",
+        "coords": [
+          0.4459041800006447,
+          -0.2671285045523943
+        ],
+        "_type": "Restaurant"
+      },
+      {
+        "name": "Durham Marriott City Center",
+        "coords": [
+          0.043069196022688896,
+          -0.05342845176418896
+        ],
+        "_type": "Hotel"
+      }
+    ],
+    [
+      {
+        "name": "Bull City Burger and Brewery",
+        "coords": [
+          0.4459041800006447,
+          -0.2671285045523943
+        ],
+        "_type": "Restaurant"
+      },
+      {
+        "name": "Durham School of the Arts",
+        "coords": [
+          -0.5162618425739227,
+          0.7353237672740697
+        ],
+        "_type": "School"
+      }
+    ],
+    [
+      {
+        "name": "Bull City Burger and Brewery",
+        "coords": [
+          0.4459041800006447,
+          -0.2671285045523943
+        ],
+        "_type": "Restaurant"
+      },
+      {
+        "name": "Trinity United Methodist Church",
+        "coords": [
+          0.5946015649961705,
+          -0.22369252806336637
+        ],
+        "_type": "Church"
+      }
+    ],
+    [
+      {
+        "name": "Bull City Burger and Brewery",
+        "coords": [
+          0.4459041800006447,
+          -0.2671285045523943
+        ],
+        "_type": "Restaurant"
+      },
+      {
+        "name": "State Employees’ Credit Union",
+        "coords": [
+          -0.8317709827487928,
+          -0.3437397740400543
+        ],
+        "_type": "Bank"
+      }
+    ],
+    [
+      {
+        "name": "Bull City Burger and Brewery",
+        "coords": [
+          0.4459041800006447,
+          -0.2671285045523943
+        ],
+        "_type": "Restaurant"
+      },
+      {
+        "name": "Downtown Durham YMCA",
+        "coords": [
+          0.264457884295393,
+          0.15266549114397956
+        ],
+        "_type": "Gym"
+      }
+    ],
+    [
+      {
+        "name": "Durham Marriott City Center",
+        "coords": [
+          0.043069196022688896,
+          -0.05342845176418896
+        ],
+        "_type": "Hotel"
+      },
+      {
+        "name": "Durham School of the Arts",
+        "coords": [
+          -0.5162618425739227,
+          0.7353237672740697
+        ],
+        "_type": "School"
+      }
+    ],
+    [
+      {
+        "name": "Downtown Durham YMCA",
+        "coords": [
+          0.264457884295393,
+          0.15266549114397956
+        ],
+        "_type": "Gym"
+      },
+      {
+        "name": "Trinity United Methodist Church",
+        "coords": [
+          0.5946015649961705,
+          -0.22369252806336637
+        ],
+        "_type": "Church"
+      }
+    ]
+  ]
+}

@@ -1,7 +1,9 @@
 
+use crate::io::endpoints::init_map;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::TcpStream;
 use serde_json::{json, Value};
+use crate::map::gen_places::fetch_map;
 
 pub async fn handle_client(mut stream: TcpStream) {
     let mut buffer = [0u8; 512];
@@ -34,7 +36,19 @@ pub async fn handle_client(mut stream: TcpStream) {
 
                                     // Handle message
                                     if let Some(init_map_obj) = parsed_json.get("INIT_MAP") {
+                                        let name = init_map_obj
+                                            .get("loc_str")
+                                            .and_then(|v| v.as_str())
+                                            .unwrap_or("default");
 
+                                        let response_json = init_map(name.to_string(), true).await;
+
+                                        if let Err(e) = stream.write_all(response_json.as_bytes()).await {
+                                            eprintln!("Failed to send INIT_MAP response: {}", e);
+                                            break;
+                                        }
+
+                                        continue;
                                     }
                                 }
                                 Err(e) => {

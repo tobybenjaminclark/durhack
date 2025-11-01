@@ -2,6 +2,7 @@ mod map;
 mod io;
 mod types;
 
+use std::fs::File;
 use tokio::io::stdin;
 use crate::map::viz_places::viz_map;
 use std::error::Error;
@@ -17,8 +18,22 @@ use tokio::io::BufReader;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
+
+    /*let map = {
+        if false {
+            let map = fetch_map("Durham", 5, 100.0).await.unwrap();
+            viz_map(&map);
+            let file = File::create("map.json")?;
+            serde_json::to_writer_pretty(file, &map)?;
+            println!("✅ Map saved to map.json");
+            map
+        } else {
+            let file = File::open("map.json")?;
+            serde_json::from_reader(file)?
+        }
+    };*/
+
     init_connection().await;
-    fetch_map("Nottingham", 5, 100.0);
     Ok(())
 }
 
@@ -70,8 +85,6 @@ pub async fn init_connection() {
 
     println!("Server listening on localhost:{}", port);
 
-    let map = fetch_map("Nottingham", 5, 100.0).await.unwrap();
-    viz_map(&map);
 
     loop {
         match listener.accept().await {
