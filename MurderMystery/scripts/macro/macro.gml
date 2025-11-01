@@ -10,3 +10,6 @@ global.current_chat_character = "Merlin";
 
 /* Characters */
 global.characters = ["Merlin", "Morgana", "Merlin", "Lancelot", "Guinevere"];
+
+/* Server Connection */
+global.is_connected = false;
