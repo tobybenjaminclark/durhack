@@ -5,6 +5,8 @@ use tokio::net::TcpStream;
 use serde_json::{json, Value};
 use crate::map::gen_places::fetch_map;
 
+const IS_LIVE: bool = false;
+
 pub async fn handle_client(mut stream: TcpStream) {
     let mut buffer = [0u8; 512];
     let mut accumulated = String::new(); // persistent string buffer
@@ -41,7 +43,7 @@ pub async fn handle_client(mut stream: TcpStream) {
                                             .and_then(|v| v.as_str())
                                             .unwrap_or("default");
 
-                                        let response_json = init_map(name.to_string(), true).await;
+                                        let response_json = init_map(name.to_string(), IS_LIVE).await;
 
                                         if let Err(e) = stream.write_all(response_json.as_bytes()).await {
                                             eprintln!("Failed to send INIT_MAP response: {}", e);
